@@ -26,11 +26,23 @@ SELECT LectureRoom, COUNT(*) FROM Lectures GROUP BY LectureRoom;
 
 ![текст](https://sun9-21.userapi.com/impg/-9pTt6vS5UXqCoM_1YZxQ08Vb6CYslkGJ6IOhA/DyqufAsd-Zg.jpg?size=1920x1080&quality=95&sign=3d324ef9663bbf0f0d5bf5d677541c77&type=album)
 
+5. Вывести количество студентов, посещающих лекции преподавателя “Jack Underhill”.
+
+SELECT COUNT(DISTINCT `Groups`.CountStudents) FROM `Groups`, GroupsLectures, Lectures, Teachers WHERE `Groups`.Id = GroupsLectures.GroupId AND GroupsLectures.LectureId = Lectures.Id AND Lectures.TeacherId = Teachers.Id AND Teachers.Name = "Jack" AND Teachers.Surname = "Underhill";
+
+![](https://sun9-16.userapi.com/impg/LapSrtd8BEqv1Fow1wV4auiqK_fbYT3mjgaBFQ/kiIHvMAvz64.jpg?size=1920x1080&quality=95&sign=7accad1f69d7c2d8815b7d1a93132086&type=album)
+
 6. Вывести среднюю ставку преподавателей факультета “Computer Science”.
 
 SELECT AVG(DISTINCT Salary) FROM Teachers, Lectures, GroupsLectures, `Groups`, Departments, Faculties WHERE Teachers.Id = Lectures.TeacherId AND Lectures.Id = GroupsLectures.LectureId AND GroupsLectures.GroupId = `Groups`.Id AND `Groups`.DepartmentId = Departments.Id AND Departments.FacultyId = Faculties.Id AND Faculties.Name = "Computer Science";
 
 ![текст](https://sun9-75.userapi.com/impg/grIu-xgsx3HrmSxgdwtAIR51ZVkliAhGwBHQLA/5pkDCJV3AhE.jpg?size=1920x1080&quality=95&sign=be994ed60e50093c37c6fa872245391e&type=album)
+
+7. Вывести минимальное и максимальное количество студентов среди всех групп. 
+
+mysql> SELECT MIN(CountStudents), MAX(CountStudents) FROM `Groups`;
+
+![](https://sun9-65.userapi.com/impg/AgSw79iGYn6H3tuep_uOIJ8dedB5ekGfOI6r4Q/pzmTsXeqONA.jpg?size=1920x1080&quality=95&sign=3b1257cea2432a6afbe31c2e73c320bf&type=album) 
 
 8. Вывести средний фонд финансирования кафедр. 
 
